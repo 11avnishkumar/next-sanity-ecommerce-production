@@ -4,10 +4,10 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import {useStateContext} from '../context/StateContext'
 import {Cart} from "./index";
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Categories', href: '#', current: true },
+  { name: 'Address', href: '#', current: false },
+  { name: 'Orders', href: '#', current: false },
+  { name: 'Refund', href: '#', current: false },
 ]
 
 function classNames(...classes) {
