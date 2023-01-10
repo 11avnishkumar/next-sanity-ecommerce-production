@@ -16,7 +16,7 @@ const Layout = ({children}) => {
                 <Navbar/>
             </header>
             <main>{children}</main>
-            <footer className='font-pop bg-gray-700'>
+            <footer className='font-pop'>
                 <Footer/>
             </footer>
         </div>
