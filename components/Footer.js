@@ -8,9 +8,9 @@ const Footer = () => {
           <h1 className='text-2xl md:text-4xl font-bold'>Subscribe to our newsletter</h1>
           <p className='text-sm md:text-xl text-slate-600'>Stay up to date with the latest products.</p>
         </div>
-        <div className='flex justify-between items-center gap-4'>
+        <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
           <input type="text" className='border border-gray-300 rounded-md' placeholder='Enter your email'/>
-          <input type="submit" value="Subscribe" className='bg-black text-white px-4 py-3 text-sm rounded-md' />
+          <input type="submit" value="Subscribe" className='w-full bg-black text-white px-4 py-3 text-sm rounded-md' />
         </div>
       </div>
       <div className='flex flex-col md:flex-row items-center border-b border-gray-300'>
