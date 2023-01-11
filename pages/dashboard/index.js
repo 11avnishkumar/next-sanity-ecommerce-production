@@ -108,9 +108,8 @@ const index = ({products}) => {
                 </thead>
                 <tbody>
                     {products.map((item) =>(
-                    <tr className='flex items-center gap-x-24 cursor-pointer hover:bg-gray-100 transition-colors'>
+                    <tr className='flex items-center gap-x-24 cursor-pointer hover:bg-gray-100 transition-colors' key={item._id}>
                         <td className='pl-10 flex gap-x-4 items-center py-4'>
-                            {console.log(item)}
                             <div className='flex items-center gap-x-4'>
                                 <input type="checkbox" className='w-5 h-5 focus:ring-emerald-500 rounded text-emerald-500 cursor-pointer' />
                                 <img src={urlFor(item.image && item.image[0])} className="w-48 aspect-[3/2 rounded-lg object-cover object-top border border-gray-200]" alt="" />
