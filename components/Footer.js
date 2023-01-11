@@ -15,7 +15,7 @@ const Footer = () => {
       </div>
       <div className='flex flex-col md:flex-row items-center border-b border-gray-300'>
         <div className='w-full md:w-2/3 px-6 py-6'>
-          <p className='text-4xl text-emerald-400'><span className="text-9xl font-bold text-emerald-500">W</span>elcome, to the world&pos;s leading ecommerce plateform.</p>
+          <p className='text-4xl text-emerald-400'><span className="text-9xl font-bold text-emerald-500">W</span>elcome, to the world&#39;s leading ecommerce plateform.</p>
         </div>
         <div className='px-3 md:px-6 py-6'>
           <div className='flex flex-col md:flex-row items-center justify-center gap-4'>

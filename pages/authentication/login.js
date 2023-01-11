@@ -86,7 +86,7 @@ export default function Login() {
             </div>
           </form>
           <div className="text-sm mt-0 flex items-center gap-1">
-                <span className="text-md font-medium">Don&apos;t have an account yet?</span>
+                <span className="text-md font-medium">Don&#39;t have an account yet?</span>
                 <Link href="/authentication/register/" className="text-md font-medium text-emerald-600 hover:text-emerald-500">
                   Create
                 </Link>
