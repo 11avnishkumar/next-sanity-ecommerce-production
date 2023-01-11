@@ -82,9 +82,9 @@ const index = ({products}) => {
                 </button>
             </div>
             <ul className='flex items-center gap-x-24 px-4 border-y border-gray-200'>
-            {status.map((item,i) => (
-                <li className=''>
-                    <button key={i} className='flex items-center gap-x-2 py-5 px-6 text-gray-500 hover:text-emerald-500 relative group'>
+            {status.map((item) => (
+                <li key={item._id}>
+                    <button  className='flex items-center gap-x-2 py-5 px-6 text-gray-500 hover:text-emerald-500 relative group'>
                     {item.name}
                     <span className='absolute -left-0 w-full bg-emerald-500 h-0.5 bottom-0 rounded scale-x-0 group-hover:scale-x-100'></span>
                     </button>

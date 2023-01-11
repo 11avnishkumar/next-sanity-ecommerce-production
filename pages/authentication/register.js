@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 export default function Login() {
   return (
@@ -89,9 +90,9 @@ export default function Login() {
           </form>
           <div className="text-sm mt-0 flex items-center gap-1">
                 <span className='text-md font-medium'>Already have an account?</span>
-                <a href="/authentication/login/" className="text-md font-medium text-emerald-600 hover:text-emerald-500">
+                <Link href="/authentication/login/" className="text-md font-medium text-emerald-600 hover:text-emerald-500">
                   Signin
-                </a>
+                </Link>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Link from 'next/link'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 export default function Login() {
   const [email,setEmail] = useState("")
@@ -86,9 +87,9 @@ export default function Login() {
           </form>
           <div className="text-sm mt-0 flex items-center gap-1">
                 <span className='text-md font-medium'>Don't have an account yet?</span>
-                <a href="/authentication/register/" className="text-md font-medium text-emerald-600 hover:text-emerald-500">
+                <Link href="/authentication/register/" className="text-md font-medium text-emerald-600 hover:text-emerald-500">
                   Create
-                </a>
+                </Link>
           </div>
         </div>
       </div>
