@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import Modal from '../../components/Modal'
 import {client, urlFor} from '../../lib/client'
 const index = ({products}) => {
-  
+  const [showModal,setShowModal] = useState(false)
   const status = [
     {name:"Published",href:""},
     {name:"Draft",href:""},
@@ -74,12 +75,13 @@ const index = ({products}) => {
                     <p className='font-semi-bold text-2xl'>Products</p>
                     <p>Create Products</p>
                 </div>
-                <button className='inline-flex gap-x-2 bg-emerald-500 px-3 py-3 rounded-lg focus:outline-none focus:ring-emerald-300 focus:ring-4 text-white cursor-pointer'>
+                <button onClick={() => setShowModal(true)} className='inline-flex gap-x-2 bg-emerald-500 px-3 py-3 rounded-lg focus:outline-none focus:ring-emerald-300 focus:ring-4 text-white cursor-pointer'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                     <span>Create Products</span>
                 </button>
+                {showModal && <Modal closeModal={setShowModal}/>}
             </div>
             <ul className='flex items-center gap-x-24 px-4 border-y border-gray-200'>
             {status.map((item) => (
@@ -93,8 +95,8 @@ const index = ({products}) => {
             </ul>
             <table className='w-full border-b border-gray-200'>
                 <thead>
-                    <tr className='text-sm font-medium flex items-center gap-x-24 border-b border-gray-200'>
-                        <td className='pl-10' style={{'columnSpan':2}}>
+                    <tr className='text-sm font-medium border-b border-gray-200'>
+                        <td className='pl-10'>
                             <div className='flex items-center gap-x-4'>
                                 <input type="checkbox" className='w-5 h-5 focus:ring-emerald-500 rounded text-emerald-500 cursor-pointer' />
                                 <span>Products</span>
@@ -108,17 +110,21 @@ const index = ({products}) => {
                 </thead>
                 <tbody>
                     {products.map((item) =>(
-                    <tr className='flex items-center gap-x-24 cursor-pointer hover:bg-gray-100 transition-colors' key={item._id}>
+                    <tr className='cursor-pointer hover:bg-gray-100 transition-colors' key={item._id}>
                         <td className='pl-10 flex gap-x-4 items-center py-4'>
-                            <div className='flex items-center gap-x-4'>
-                                <input type="checkbox" className='w-5 h-5 focus:ring-emerald-500 rounded text-emerald-500 cursor-pointer' />
-                                <img src={urlFor(item.image && item.image[0])} className="w-48 aspect-[3/2 rounded-lg object-cover object-top border border-gray-200]" alt="" />
-                                <span className='text-lg font-semibold hover:text-emerald-500'>
-                                <Link href={`/product/${item.slug.current}`}>{item.name}</Link>    
-                                </span>
+                            <input type="checkbox" 
+                            className='w-5 h-5 focus:ring-emerald-500 rounded text-emerald-500 cursor-pointer'
+                             />
+                            <img src={urlFor(item.image && item.image[0])} 
+                            className="w-48 aspect-[3/2] rounded-lg object-contain border border-gray-200" alt=""
+                             />
+                            <div>
+                            <span className='text-lg font-semibold hover:text-emerald-500'>
+                            <Link href={`/product/${item.slug.current}`}>{item.name}</Link>    
+                            </span>
                             </div>
                         </td>
-                        <td className='font-medium text-center'>{item.price}</td>
+                        <td className='font-medium text-center'>${item.price}</td>
                         <td className='font-medium text-center'>10</td>
                         <td className='font-medium text-center'>{item._createdAt}</td>
                         <td className='font-medium text-center flex items-center gap-x-6'>
