@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Modal from '../../components/Modal'
 import {client, urlFor} from '../../lib/client'
 const index = ({products}) => {
-  const [showModal,setShowModal] = useState(false)
+  const [showModal,SetShowModal] = useState(false)
   const status = [
     {name:"Published",href:""},
     {name:"Draft",href:""},
@@ -75,13 +75,13 @@ const index = ({products}) => {
                     <p className='font-semi-bold text-2xl'>Products</p>
                     <p>Create Products</p>
                 </div>
-                <button onClick={() => setShowModal(true)} className='inline-flex gap-x-2 bg-emerald-500 px-3 py-3 rounded-lg focus:outline-none focus:ring-emerald-300 focus:ring-4 text-white cursor-pointer'>
+                <button onClick={() => SetShowModal(true)} className='inline-flex gap-x-2 bg-emerald-500 px-3 py-3 rounded-lg focus:outline-none focus:ring-emerald-300 focus:ring-4 text-white cursor-pointer'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                     <span>Create Products</span>
                 </button>
-                {showModal && <Modal closeModal={setShowModal}/>}
+                {showModal && <Modal closeModal={SetShowModal}/>}
             </div>
             <ul className='flex items-center gap-x-24 px-4 border-y border-gray-200'>
             {status.map((item) => (
