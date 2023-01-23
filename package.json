@@ -24,6 +24,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
+    "recharts": "^2.3.2",
     "sanity": "^2.33.2",
     "stripe": "^10.17.0"
   },

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect} from "react"
 import {client} from '../lib/client'
 import Link from "next/link"
 import {Product} from '../components'
@@ -24,7 +24,6 @@ return(
             <p className="block w-full text-center bg-emerald-500 border border-2 rounded-full py-3 px-6 text-white cursor-pointer">
                 Continue Shopping
             </p>
-             
         </Link>
         <Link href='' >
             <p className="block w-full text-center border border-2 rounded-full border-emerald-500 text-emerald-500 px-6 py-3 cursor-pointer">

@@ -21,27 +21,40 @@ const Footer = () => {
           <div className='flex flex-col md:flex-row items-center justify-center gap-4'>
             <div>
               <p className='text-gray-400'>Company</p>
-              <p>Lorem ipsum dolor sit amet.</p>
-              <p>Lorem ipsum dolor sit amet.</p>
-              <p>Lorem ipsum dolor sit amet.</p>
+              <a href="">Lorem ipsum dolor sit amet.</a>
+              <a href="">Lorem ipsum dolor sit amet.</a>
+              <a href="">Lorem ipsum dolor sit amet.</a>
             </div>
             <div>
               <p className='text-gray-400'>Resource</p>
-              <p>Lorem ipsum dolor sit amet.</p>
-              <p>Lorem ipsum dolor sit amet.</p>
-              <p>Lorem ipsum dolor sit amet.</p>
+              <div className='flex flex-col gap-3'>
+                <a href="">Blog</a>
+                <a href="">Newsletter</a>
+                <a href="">Events</a>
+                <a href="">Helpcenter</a>
+                <a href="">Tutorials</a>
+                <a href="">Support</a>  
+              </div>
             </div>
             <div>
               <p className='text-gray-400'>Social</p>
-              <p>Lorem ipsum dolor sit amet.</p>
-              <p>Lorem ipsum dolor sit amet.</p>
-              <p>Lorem ipsum dolor sit amet.</p>
+              <div className='flex flex-col'>
+                <a href="">Twitter</a>
+                <a href="">LinkedIn</a>
+                <a href="">Facebook</a>
+                <a href="">Instagram</a>
+              </div>
             </div>
             <div>
               <p className='text-gray-400'>Legal</p>
-              <p>Lorem ipsum dolor sit amet.</p>
-              <p>Lorem ipsum dolor sit amet.</p>
-              <p>Lorem ipsum dolor sit amet.</p>
+              <div className='flex flex-col'>
+                <a href=''>Terms</a>
+                <a href=''>Privacy</a>
+                <a href=''>Cookies</a>
+                <a href=''>License</a>
+                <a href=''>Settings</a>
+                <a href=''>Contacts</a>
+              </div>
             </div>
           </div>
         </div>

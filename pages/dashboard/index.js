@@ -1,157 +1,92 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { AreaChart, CartesianGrid,Tooltip,Area, XAxis, YAxis } from 'recharts';
 import Modal from '../../components/Modal'
 import {client, urlFor} from '../../lib/client'
-const Index = ({products}) => {
-  const [showModal,setShowModal] = useState(false)
-  const status = [
-    {name:"Published",href:""},
-    {name:"Draft",href:""},
-    {name:"Hidden",href:""},
-    {name:"Rejected",href:""},
-    {name:"Under Review",href:""},
-  ]
-  
+import Sidebar from '../../components/Sidebar'
+const Dashboard = ({products}) => {
+    const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}]
+    const renderCustomAxisTick = ({ x, y, payload }) => {
+    let path = '';
+
+    switch (payload.value) {
+        case 'Page A':
+        path = 'M899.072 99.328q9.216 13.312 17.92 48.128t16.384 81.92 13.824 100.352 11.264 102.912 9.216 90.112 6.144 60.928q4.096 30.72 7.168 70.656t5.632 79.872 4.096 75.264 2.56 56.832q-13.312 16.384-30.208 25.6t-34.304 11.264-34.304-2.56-30.208-16.896q-1.024-10.24-3.584-33.28t-6.144-53.76-8.192-66.56-8.704-71.68q-11.264-83.968-23.552-184.32-7.168 37.888-11.264 74.752-4.096 31.744-6.656 66.56t-0.512 62.464q1.024 18.432 3.072 29.184t4.608 19.968 5.12 21.504 5.12 34.304 5.12 56.832 4.608 90.112q-11.264 24.576-50.688 42.496t-88.576 29.696-97.28 16.896-74.752 5.12q-18.432 0-46.08-2.56t-60.416-7.168-66.048-12.288-61.952-17.92-49.664-24.064-28.16-30.208q2.048-55.296 5.12-90.112t5.632-56.832 5.12-34.304 5.12-21.504 4.096-19.968 3.584-29.184q2.048-27.648-0.512-62.464t-6.656-66.56q-4.096-36.864-11.264-74.752-13.312 100.352-24.576 184.32-5.12 35.84-9.216 71.68t-8.192 66.56-6.656 53.76-2.56 33.28q-13.312 12.288-30.208 16.896t-34.304 2.56-33.792-11.264-29.696-25.6q0-21.504 2.048-56.832t4.096-75.264 5.632-79.872 6.656-70.656q2.048-20.48 6.144-60.928t9.728-90.112 11.776-102.912 13.824-100.352 16.384-81.92 17.92-48.128q20.48-12.288 56.32-25.6t73.216-26.624 71.168-25.088 50.176-22.016q10.24 13.312 16.896 61.44t13.312 115.712 15.36 146.432 23.04 153.6l38.912-334.848-29.696-25.6 43.008-54.272 15.36 2.048 15.36-2.048 43.008 54.272-29.696 25.6 38.912 334.848q14.336-74.752 23.04-153.6t15.36-146.432 13.312-115.712 16.896-61.44q16.384 10.24 50.176 22.016t71.168 25.088 73.216 26.624 56.32 25.6';
+        break;
+        case 'Page B':
+        path = 'M662.528 451.584q10.24 5.12 30.208 16.384t46.08 31.744 57.856 52.736 65.024 80.896 67.072 115.2 64.512 154.624q-15.36 9.216-31.232 21.504t-31.232 22.016-31.744 15.36-32.768 2.56q-44.032-9.216-78.336-8.192t-62.976 7.68-53.248 16.896-47.616 19.968-46.08 16.384-49.664 6.656q-57.344-1.024-110.592-16.896t-101.376-32.256-89.6-25.088-75.264 4.608q-20.48 8.192-41.984 1.024t-38.912-18.432q-20.48-13.312-39.936-33.792 37.888-116.736 86.016-199.68t92.672-136.704 78.848-81.408 43.52-33.792q9.216-5.12 10.24-25.088t-1.024-40.448q-3.072-24.576-9.216-54.272l-150.528-302.08 180.224-29.696q27.648 52.224 53.76 79.36t50.176 36.864 45.568 5.12 39.936-17.92q43.008-30.72 80.896-103.424l181.248 29.696q-20.48 48.128-45.056 99.328-20.48 44.032-47.616 97.28t-57.856 105.472q-12.288 34.816-13.824 57.344t1.536 36.864q4.096 16.384 12.288 25.6z';
+        break;
+        case 'Page C':
+        path = 'M662.528 451.584q10.24 5.12 30.208 16.384t46.08 31.744 57.856 52.736 65.024 80.896 67.072 115.2 64.512 154.624q-15.36 9.216-31.232 21.504t-31.232 22.016-31.744 15.36-32.768 2.56q-44.032-9.216-78.336-8.192t-62.976 7.68-53.248 16.896-47.616 19.968-46.08 16.384-49.664 6.656q-57.344-1.024-110.592-16.896t-101.376-32.256-89.6-25.088-75.264 4.608q-20.48 8.192-41.984 1.024t-38.912-18.432q-20.48-13.312-39.936-33.792 37.888-116.736 86.016-199.68t92.672-136.704 78.848-81.408 43.52-33.792q9.216-5.12 10.24-25.088t-1.024-40.448q-3.072-24.576-9.216-54.272l-150.528-302.08 180.224-29.696q27.648 52.224 53.76 79.36t50.176 36.864 45.568 5.12 39.936-17.92q43.008-30.72 80.896-103.424l181.248 29.696q-20.48 48.128-45.056 99.328-20.48 44.032-47.616 97.28t-57.856 105.472q-12.288 34.816-13.824 57.344t1.536 36.864q4.096 16.384 12.288 25.6z';
+        break;
+        case 'Page D':
+        path = 'M662.528 451.584q10.24 5.12 30.208 16.384t46.08 31.744 57.856 52.736 65.024 80.896 67.072 115.2 64.512 154.624q-15.36 9.216-31.232 21.504t-31.232 22.016-31.744 15.36-32.768 2.56q-44.032-9.216-78.336-8.192t-62.976 7.68-53.248 16.896-47.616 19.968-46.08 16.384-49.664 6.656q-57.344-1.024-110.592-16.896t-101.376-32.256-89.6-25.088-75.264 4.608q-20.48 8.192-41.984 1.024t-38.912-18.432q-20.48-13.312-39.936-33.792 37.888-116.736 86.016-199.68t92.672-136.704 78.848-81.408 43.52-33.792q9.216-5.12 10.24-25.088t-1.024-40.448q-3.072-24.576-9.216-54.272l-150.528-302.08 180.224-29.696q27.648 52.224 53.76 79.36t50.176 36.864 45.568 5.12 39.936-17.92q43.008-30.72 80.896-103.424l181.248 29.696q-20.48 48.128-45.056 99.328-20.48 44.032-47.616 97.28t-57.856 105.472q-12.288 34.816-13.824 57.344t1.536 36.864q4.096 16.384 12.288 25.6z';
+        break;
+        case 'Page E':
+        path = 'M662.528 451.584q10.24 5.12 30.208 16.384t46.08 31.744 57.856 52.736 65.024 80.896 67.072 115.2 64.512 154.624q-15.36 9.216-31.232 21.504t-31.232 22.016-31.744 15.36-32.768 2.56q-44.032-9.216-78.336-8.192t-62.976 7.68-53.248 16.896-47.616 19.968-46.08 16.384-49.664 6.656q-57.344-1.024-110.592-16.896t-101.376-32.256-89.6-25.088-75.264 4.608q-20.48 8.192-41.984 1.024t-38.912-18.432q-20.48-13.312-39.936-33.792 37.888-116.736 86.016-199.68t92.672-136.704 78.848-81.408 43.52-33.792q9.216-5.12 10.24-25.088t-1.024-40.448q-3.072-24.576-9.216-54.272l-150.528-302.08 180.224-29.696q27.648 52.224 53.76 79.36t50.176 36.864 45.568 5.12 39.936-17.92q43.008-30.72 80.896-103.424l181.248 29.696q-20.48 48.128-45.056 99.328-20.48 44.032-47.616 97.28t-57.856 105.472q-12.288 34.816-13.824 57.344t1.536 36.864q4.096 16.384 12.288 25.6z';
+        break;
+        case 'Page F':
+        path = 'M662.528 451.584q10.24 5.12 30.208 16.384t46.08 31.744 57.856 52.736 65.024 80.896 67.072 115.2 64.512 154.624q-15.36 9.216-31.232 21.504t-31.232 22.016-31.744 15.36-32.768 2.56q-44.032-9.216-78.336-8.192t-62.976 7.68-53.248 16.896-47.616 19.968-46.08 16.384-49.664 6.656q-57.344-1.024-110.592-16.896t-101.376-32.256-89.6-25.088-75.264 4.608q-20.48 8.192-41.984 1.024t-38.912-18.432q-20.48-13.312-39.936-33.792 37.888-116.736 86.016-199.68t92.672-136.704 78.848-81.408 43.52-33.792q9.216-5.12 10.24-25.088t-1.024-40.448q-3.072-24.576-9.216-54.272l-150.528-302.08 180.224-29.696q27.648 52.224 53.76 79.36t50.176 36.864 45.568 5.12 39.936-17.92q43.008-30.72 80.896-103.424l181.248 29.696q-20.48 48.128-45.056 99.328-20.48 44.032-47.616 97.28t-57.856 105.472q-12.288 34.816-13.824 57.344t1.536 36.864q4.096 16.384 12.288 25.6z';
+        break;
+        default:
+        path = '';
+    }
+
+  return (
+    <svg x={x - 12} y={y + 4} width={24} height={24} viewBox="0 0 1024 1024" fill="#666">
+      <path d={path} />
+    </svg>
+  );
+};
+const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
+  return <text x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
+};      
   return (
     <div className='min-h-screen min-w-screen flex'>
-        <div className='min-h-screen'>
-            <nav className='py-6 px-10 w-64 border-r border-gray-200'>
-                <div className='mb-3 py-6 px-10'>
-                    <Link href=''>
-                    <div className='flex items-center gap-2'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                    </svg>
-                    <span>Overview</span>
-                    </div>
-                    </Link>
-                </div>
-                <div className='mb-3 py-6 px-10'>
-                    <Link href=''>
-                    <div className='flex items-center gap-2'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3" />
-                    </svg>
-                    <span>Products</span>
-                    </div>
-                    </Link>
-                </div>
-                <div className='mb-3 py-6 px-10'>
-                    <Link href=''>
-                    <div className='flex items-center gap-2'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                    </svg>
-                    <span>Analytics</span>
-                    </div>
-                    </Link>
-                </div>
-                <div className='mb-3 py-6 px-10'>
-                    <Link href=''>
-                    <div className='flex items-center gap-2'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                    </svg>
-                    <span>Overview</span>
-                    </div>
-                    </Link>
-                </div>
-                <div className='mb-3 py-6 px-10'>
-                    <Link href=''>
-                    <div className='flex items-center gap-2'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                    </svg>
-                    <span>Overview</span>
-                    </div>
-                    </Link>
-                </div>
-            </nav>
-        </div>
+        <Sidebar/>
         {/* main container */}
-        <div className='flex-1'>
-            <div className='flex justify-between items-center  py-7 px-10'>
-                <div>
-                    <p className='font-semi-bold text-2xl'>Products</p>
-                    <p>Create Products</p>
+        <main className='flex-1 px-10 py-6'>
+            <div className='grid grid-cols-3 items-center gap-4'>
+                <div className='bg-white shadow-md rounded-md px-4 py-4 space-y-2 border-l-4 border-emerald-500'>
+                    <p className='text-3xl text-center text-gray-400'>Todays Profit</p>
+                    <div className='text-5xl text-center'><span className='text-gray-400'>$</span><span className='text-5xl'>8000</span></div>
                 </div>
-                <button onClick={() => setShowModal(true)} className='inline-flex gap-x-2 bg-emerald-500 px-3 py-3 rounded-lg focus:outline-none focus:ring-emerald-300 focus:ring-4 text-white cursor-pointer'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                    <span>Create Products</span>
-                </button>
-                {showModal && <Modal closeModal={setShowModal}/>}
+                <div className='bg-white shadow-md shadow-md rounded-md px-4 py-4 space-y-2 border-l-4 border-emerald-500'>
+                    <p className='text-3xl text-center text-gray-400'>Todays Orders</p>
+                    <div className='text-5xl text-center'><span className='text-gray-400'>$</span><span className='text-5xl'>8000</span></div>
+                </div>
+                <div className='bg-white shadow-md shadow-md rounded-md px-4 py-4 space-y-2 border-l-4 border-emerald-500'>
+                    <p className='text-3xl text-center text-gray-400'>Todays Sales</p>
+                    <div className='text-5xl text-center'><span className='text-gray-400'>$</span><span className='text-5xl'>8000</span></div>
+                </div>
             </div>
-            <ul className='flex items-center gap-x-24 px-4 border-y border-gray-200'>
-            {status.map((item) => (
-                <li key={item._id}>
-                    <button  className='flex items-center gap-x-2 py-5 px-6 text-gray-500 hover:text-emerald-500 relative group'>
-                    {item.name}
-                    <span className='absolute -left-0 w-full bg-emerald-500 h-0.5 bottom-0 rounded scale-x-0 group-hover:scale-x-100'></span>
-                    </button>
-                </li>
-            ))}
-            </ul>
-            <table className='w-full border-b border-gray-200'>
-                <thead>
-                    <tr className='text-sm font-medium border-b border-gray-200'>
-                        <td className='pl-10'>
-                            <div className='flex items-center gap-x-4'>
-                                <input type="checkbox" className='w-5 h-5 focus:ring-emerald-500 rounded text-emerald-500 cursor-pointer' />
-                                <span>Products</span>
-                            </div>
-                        </td>
-                        <td className='px-4 py-4 text-center'>Price</td>
-                        <td className='px-4 py-4 text-center'>Stock</td>
-                        <td className='px-4 py-4 text-center'>Date</td>
-                        <td className='px-4 py-4 text-center'>Action</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((item) =>(
-                    <tr className='cursor-pointer hover:bg-gray-100 transition-colors' key={item._id}>
-                        <td className='pl-10 flex gap-x-4 items-center py-4'>
-                            <input type="checkbox" 
-                            className='w-5 h-5 focus:ring-emerald-500 rounded text-emerald-500 cursor-pointer'
-                             />
-                            <img src={urlFor(item.image && item.image[0])} 
-                            className="w-48 aspect-[3/2] rounded-lg object-contain border border-gray-200" alt=""
-                             />
-                            <div>
-                            <span className='text-lg font-semibold hover:text-emerald-500'>
-                            <Link href={`/product/${item.slug.current}`}>{item.name}</Link>    
-                            </span>
-                            </div>
-                        </td>
-                        <td className='font-medium text-center'>${item.price}</td>
-                        <td className='font-medium text-center'>10</td>
-                        <td className='font-medium text-center'>{item._createdAt}</td>
-                        <td className='font-medium text-center flex items-center gap-x-6'>
-                            <div className='flex items-center'>
-                            <Link href=''>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                </svg>
-                            </Link>    
-                            </div>
-                            <div className='flex items-center'>
-                            <Link href=''>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-red-400">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                            </svg>
-                            </Link>    
-                            </div>
-                        </td>
-                    </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+            {/* Chart */}
+            <div className='mt-5'>
+            <AreaChart width={1024} height={250} data={data}
+                margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                <defs>
+                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                    </linearGradient>
+                    <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+                    </linearGradient>
+                </defs>
+                <XAxis dataKey="name" />
+                <YAxis />
+                <CartesianGrid strokeDasharray="3 3" />
+                <Tooltip />
+                <Area type="monotone" dataKey="uv" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+                <Area type="monotone" dataKey="pv" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+            </AreaChart>       
+            </div>
+        </main>
     </div>
   )
 }
-export default Index
+export default Dashboard
 export const getServerSideProps = async () => {
     const query = '*[_type == "product"]';
     const products = await client.fetch(query);

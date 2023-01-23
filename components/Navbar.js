@@ -5,10 +5,11 @@ import {useStateContext} from '../context/StateContext'
 import Link from 'next/link'
 import {Cart} from "./index";
 const navigation = [
-  { name: 'Categories', href: '#', current: true },
-  { name: 'Address', href: '#', current: false },
-  { name: 'Orders', href: '#', current: false },
-  { name: 'Refund', href: '#', current: false },
+  { name: 'Dashboard', href: '/dashboard', current: true },
+  { name: 'Categories', href: '/product/categories', current: true },
+  { name: 'Address', href: '/user/address', current: false },
+  { name: 'Orders', href: '/user/orders', current: false },
+  { name: 'Refund', href: '/user/refund', current: false },
 ]
 
 function classNames(...classes) {
@@ -135,20 +136,21 @@ export default function Navbar() {
                         {({ active }) => (
                           <span className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
                           <Link
-                            href="/profile/">
-                            Your Profile
+                            href="/accounts/">
+                            Your Accounts
                           </Link>
                           </span>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          <span className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                          <Link
+                            href="/accounts/orders"
                           >
-                            Settings
-                          </a>
+                            Your Orders
+                          </Link>
+                          </span>
                         )}
                       </Menu.Item>
                       <Menu.Item>

@@ -6,7 +6,7 @@ const Modal = ({closeModal}) => {
     <div className='min-h-screen transition-all z-[1000] absolute left-0 right-0 bottom-0 top-0'>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-lg rounded-lg space-x-8 bg-white space-y-8">
-          <div className='mx-auto mt-6 flex justify-evenly  items-center'>
+          <div className='mx-auto mt-6 flex justify-evenly items-center'>
             <span className="text-xl font-bold tracking-tight text-gray-900">
               Enter the product details
             </span>

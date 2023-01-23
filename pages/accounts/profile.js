@@ -1,7 +1,6 @@
 import react,{useState} from 'react'
 import Link from 'next/link'
-const Profile = () => {
-    
+const Profile = () => {    
     const [err, setError] = useState('');
     const [firstname, setFirstName] = useState('');
     const [lastname, setLastName] = useState('');
@@ -35,9 +34,7 @@ const Profile = () => {
     }
     return (
         <div className='bg-gray-100 px-6 py-6'>
-            {/* Index container  */}
             <div className="px-2 py-4">
-                {/* form */}
                 <div className="flex justify-between items-center mb-3">
                     <div>
                         <ul className='inline-flex items-center space-x-4'>
