@@ -14,7 +14,7 @@ const Sidebar = () => {
     <div className='min-h-screen'>
         <nav className='py-6 px-10 w-64 border-r border-gray-200'>
             {navigation.map((nav,i) => (
-            <div className='py-3 px-10 bg-emerald-500 rounded-md text-white cursor-pointer mb-4'>
+            <div className='py-3 px-10 bg-emerald-500 rounded-md text-white cursor-pointer mb-4' key={i}>
                 <Link href={nav.href}>
                 <div className='flex items-center gap-2'>
                 <span className='capitalize'>{nav.name}</span>

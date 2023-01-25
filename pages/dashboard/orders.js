@@ -11,7 +11,7 @@ const Orders = ({products}) => {
             <h1 className='text-4xl font-bold'>Products</h1>
             <div className='grid grid-cols-3 gap-3'>
                 {products.map((item) =>(
-                <div className='peer overflow-hidden border border-gray-200 rounded-lg'>
+                <div className='peer overflow-hidden border border-gray-200 rounded-lg' key={item._id}>
                     <img src={urlFor(item.image && item.image[0])} alt="" />
                     <div className='px-10 py-3'>
                         <div className=' flex justify-between items-center'>

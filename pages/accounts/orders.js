@@ -17,7 +17,7 @@ const Orders = ({products}) => {
 	       <div className='bg-white p-8 rounded-md'>
 	       <div className=''>
 	       {products.map((item) => (
-	    	<div className='grid grid-cols-3 gap-3 items-center border-b-2 border-gray-100 mb-3'>
+	    	<div className='grid grid-cols-3 gap-3 items-center border-b-2 border-gray-100 mb-3' key={item._id}>
 		  <div className='col-span-2'>
 		    <h1 className='text-3xl'>Delivered October 28</h1>   
 		  <div className='grid grid-cols-3 items-center gap-4'>
