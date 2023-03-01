@@ -7,6 +7,7 @@ export default function Banner({heroBanner}) {
       <div className="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex w-0 flex-1 items-center">
+            <p className="text-8xl text-center">Electronics <span className="text-emerald-500">Fair</span></p>
             <p className="ml-3 truncate font-medium text-white">
               <span className="md:hidden">{heroBanner.smallText}</span>
               <span className="hidden md:inline">{heroBanner.smallText}</span>
