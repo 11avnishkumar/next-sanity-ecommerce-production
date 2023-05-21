@@ -27,6 +27,11 @@ export default {
         }
       },
       { 
+        name: 'brand',
+        title: 'Brand',
+        type: 'string',
+      },
+      { 
         name: 'price',
         title: 'Price',
         type: 'number',

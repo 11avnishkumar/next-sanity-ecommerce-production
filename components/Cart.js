@@ -7,7 +7,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import {useStateContext} from "../context/StateContext";
 import getStripe from "../lib/getStripe";
 import axios from "axios";
-import {toast} from "react-hot-toast";
+import {toast } from 'react-toastify';
 export default function Cart() {
   const cartRef = useRef();
   const {showCart, setShowCart,toggleCartItemQuanitity,onRemove,totalPrice,cartItems,totalQuantities} = useStateContext()
@@ -24,7 +24,9 @@ export default function Cart() {
     
     if(response.statusCode === 500) return
     const data = await response.json()
-    toast.loading('Redirecting...')
+     toast.info(" Redirecting...!", {
+       position: toast.POSITION.TOP_CENTER 
+     })
     stripe.redirectToCheckout({ sessionId: data.id })
   }catch(error){
     console.log(error)

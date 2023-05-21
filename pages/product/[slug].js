@@ -1,11 +1,12 @@
 import React from 'react'
 import {useState} from 'react'
-import {Product} from '../../components'
+import {Product, ProductReviews} from '../../components'
 import {client, urlFor} from '../../lib/client'
 import {StarIcon} from '@heroicons/react/20/solid'
 import {useStateContext} from '../../context/StateContext'
 
 const ProductDetails = ({products, product}) => {
+    
     const {image, name, price, details} = product
     const [index, setIndex] = useState(0)
     const {decQty, incQty, qty, onAdd} = useStateContext()
@@ -60,9 +61,12 @@ const ProductDetails = ({products, product}) => {
                 </div>
             </div>
         </div>
+       {/* Product Reviews */}
+        <ProductReviews/>
         {/* Product Recommendation  */}
         <div className='mt-4 px-4'>
-            <p className='text-2xl md:text-3xl text-slate-700'>Your May also like</p>
+            <h1 className='text-3xl text-slate-700 font-extrabold capitalize md:text-3xl'>You may also like</h1>
+            <hr/>
             <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
             {products.map((item) => (
                 <Product key={item._id} product={item}/>
@@ -98,7 +102,8 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({params: {slug}}) => {
     const query = `*[_type == "product" && slug.current == '${slug}'][0]`
     const productQuery = '*[_type== "product"]'
-
+    
+    /* Product for You may like section*/
     const product = await client.fetch(query);
     const products = await client.fetch(productQuery);
     return {

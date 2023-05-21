@@ -47,7 +47,6 @@ export default function Navbar() {
                     alt="Your Company"
                   />
                 </div>
-
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
@@ -64,9 +63,9 @@ export default function Navbar() {
                       </a>
                     ))}
                     {/* Mobile search  */}
-                    <div className='md:hidden'>
+                    <div className='block md:hidden'>
                       <form className='inline-flex items-center bg-gray-200 rounded-full px-3'>
-                        <input type="text" className="w-full bg-transparent border-0 outline-none py-2 px-3" placeholder="Search Products" />
+                        <input type="text" className="w-full bg-transparent border-none outline-none py-2 px-3" placeholder="Search Products" />
                         <button type="button" className="inline-flex w-6 h-6">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -80,7 +79,7 @@ export default function Navbar() {
               {/* Search Bar*/}
               <div className='hidden md:block'>
                 <form className='inline-flex items-center bg-gray-200 rounded-full px-3'>
-                  <input type="text" className="w-full bg-transparent border-0 outline-none py-2 px-3" placeholder="Search Products" />
+                  <input type="text" className="w-full bg-transparent border-none outline-none py-2 px-3"  placeholder="Search Products" />
                   <button type="button" className="inline-flex w-6 h-6">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />

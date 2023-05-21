@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Footer = () => {
+  const copyright = new Date().getFullYear();
   return (
     <div className='px-10 py-8 border-t border-gray-300'>
       <div className='flex space-y-6 flex-col md:flex-row justify-between items-center'>
@@ -59,9 +60,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className='flex justify-between items-center gap-6 py-6'>
-        <div>&copy; 2017 ecommerce, All rights reserved.</div>
-        <div></div>
+      <div className='flex justify-center items-center gap-6 py-6'>
+        <p>&copy; {copyright} Electronics Fair, All rights reserved.</p>
       </div>
     </div>
   )

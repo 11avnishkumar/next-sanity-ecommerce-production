@@ -1,13 +1,17 @@
 import '../styles/globals.css'
 import { SessionProvider } from "next-auth/react"
-import { Toaster } from 'react-hot-toast';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {StateContext} from '../context/StateContext'
 import Layout from '../components/Layout'
-function MyApp({ Component,session, pageProps }) {
+function MyApp({ Component,
+  pageProps: { session, ...pageProps }, }) {
   return (
     <SessionProvider session={session}>
     <StateContext>
-      <Toaster/>
+      <ToastContainer/>
         <Layout>
             <Component {...pageProps} />
         </Layout>
@@ -17,3 +21,5 @@ function MyApp({ Component,session, pageProps }) {
 }
 
 export default MyApp
+
+
