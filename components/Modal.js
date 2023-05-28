@@ -52,7 +52,37 @@ const Modal = ({closeModal}) => {
   const [category,setCategory] = useState("");
   const [description,setDescription] = useState("");
   const [draft,setDraft] = useState(false);
-console.log(title,price,brand,category,description,draft);
+  const [image,setImage] = useState("");
+  const [errMessage, setErrMessage] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //if either part of the form isn't filled out
+    //set an error message and exit
+    if (title === "" || price === 0 || brand === "",description === "") {
+      setErrMessage("Todo text and due date must be filled out.");
+    } else {
+      //otherwise send the todo to our api
+			// (we'll make this next!)
+      await fetch("/api/add-products", {
+        method: "POST",
+        body: JSON.stringify({
+          title,
+          price,
+          brand,
+          description,
+          image
+        }),
+      });
+      // Clear all inputs after the todo is sent to Sanity
+      setErrMessage("");
+      setTitle("");
+      setBrand("");
+      setPrice("");
+      setDescription("");
+      
+      
+    }
+  };
   return (
     <div className='min-h-screen transition-all z-[1000] absolute left-0 right-0 bottom-0 top-0'>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -63,7 +93,7 @@ console.log(title,price,brand,category,description,draft);
             </span>
             <span className='text-2xl cursor-pointer' onClick={()=> closeModal(false)}>&times;</span>
           </div>
-          <form className="mt-4 space-y-6">
+          <form className="mt-4 space-y-6" onSubmit={handleSubmit} encType='multipart/form-data'>
             <div className="rounded-md shadow-sm">
               <div className='mb-4'>
                 <label htmlFor="product-name" className="sr-only">
@@ -119,6 +149,20 @@ console.log(title,price,brand,category,description,draft);
                   <option value={`${op}`} key={index}>{op}</option>
                 ))}
                 </select>
+              </div>
+              <div className='mb-4'>
+                <label htmlFor="product-name" className="sr-only">
+                  Price
+                </label>
+                <input
+                  id="image"
+                  name="image"
+                  type="file"
+                  required
+                  className="relative block w-full appearance-none rounded-md  border border-gray-300 px-3 py-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-emerald-500 focus:outline-none focus:ring-emerald-500 sm:text-sm"
+                  placeholder="Upload and Image"
+                  onChange={(e) => setImage(e.target.value)}
+                />
               </div>
               <div>
                 <label htmlFor="description" className="sr-only">

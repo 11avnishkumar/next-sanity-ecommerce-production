@@ -42,7 +42,10 @@ const Dashboard = () => {
     return <text x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
   };
   // nextjs auth using google providers
-  // if (session) {
+    if (typeof window !== 'undefined' && !session) {
+      window.location.href = '/login';
+      return;
+    }
     return (
       <div className='min-h-screen min-w-screen flex'>
         <Sidebar />
@@ -87,12 +90,6 @@ const Dashboard = () => {
         </main>
       </div>
     )
-  // } else {
-  //   if (typeof window !== 'undefined') {
-  //     window.location.href = '/login';
-  //   }
-
-  // }
 }
 export default Dashboard
 

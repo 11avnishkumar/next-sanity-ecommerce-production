@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession, signIn} from "next-auth/react"
 import Link from 'next/link'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 export default function Login() {
   const { data: session } = useSession();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
+ 
   return (
     <div className='min-h-screen'>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -21,6 +21,7 @@ export default function Login() {
               Sign in to your account
             </h2>
           </div>
+          
           <form className="mt-8 space-y-6" action="#" method="POST">
             <div className="rounded-md shadow-sm">
               <div className='mb-4'>
@@ -29,9 +30,6 @@ export default function Login() {
                   className="group relative flex w-full justify-center rounded-md border bg-white text-black py-3 px-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                   onClick={() => signIn('google')}
                 >
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                    <LockClosedIcon className="h-5 w-5 text-emerald-700 group-hover:text-emerald-600" aria-hidden="true" />
-                  </span>
                   Sign in with google
                 </button>
               </div>

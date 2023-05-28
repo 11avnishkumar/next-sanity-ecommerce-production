@@ -4,6 +4,10 @@ import Modal from '../../components/Modal'
 import Sidebar from '../../components/Sidebar'
 import { client, urlFor } from '../../lib/client'
 const Products = ({ products }) => {
+    function formatDateWithoutTime(date) {
+		const formattedDate = new Date(date).toLocaleDateString();
+		return formattedDate;
+	}
     const [showModal, setShowModal] = useState(false)
     const status = [
         { name: "Published", href: "" },
@@ -74,7 +78,7 @@ const Products = ({ products }) => {
                                 </td>
                                 <td className='font-medium text-center'>${item.price}</td>
                                 <td className='font-medium text-center'>10</td>
-                                <td className='font-medium text-center'>{item._createdAt}</td>
+                                <td className='font-medium text-center'>{formatDateWithoutTime(item._createdAt)}</td>
                                 <td className='font-medium text-center flex items-center gap-x-6'>
                                     <div className='flex items-center'>
                                         <Link href=''>

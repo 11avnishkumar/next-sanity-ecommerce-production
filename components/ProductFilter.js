@@ -7,7 +7,24 @@ const ProductFilter = (props) => {
     const filterCategories = {
         categoriesFilter: ['Earphone', 'Mobile', 'Smartphone', 'Pendrive', 'Monitor'],
         brandFilter: ['Dell','Redmi', 'Boat', 'Apple', 'Samsung', 'Sony'],
-        colorFilter: ['Red', 'Silver', 'Gray', 'White'],
+        colorFilter : [
+            'red',
+            'pink',
+            'rose',
+            'orange',
+            'amber',
+            'yellow',
+            'lime',
+            'green',
+            'emerald',
+            'teal',
+            'cyan',
+            'indigo',
+            'purple',
+            'fuchsia',
+            'blue',
+            'violet',
+          ],
     }
     const getColors = (values) => {
          setColor((prevColor) => {
@@ -49,12 +66,12 @@ const ProductFilter = (props) => {
                 </ul>
                 {/* color */}
                 <h3 className="mt-4 mb-4 font-semibold text-gray-900 dark:text-white">Choose Color</h3>
-                <ul className="bg-white flex">
+                <ul className="bg-white flex flex-wrap">
                  {filterCategories.colorFilter.map((item,index) => (
                     <li className="flex rounded-t-lg dark:border-gray-600" key={index}>
-                        <div className="flex items-center pr-3">
+                        <div className="flex items-center pr-3 py-1">
                             <input id={`${item}-checkbox`} type="checkbox" value={`${item}`} className="hidden"  onChange={(e)=>getColors(e.target.value)}/>
-                            <label htmlFor={`${item}-checkbox`} className="inline-block w-full h-8 w-8 rounded-full bg-red-500"></label>
+                            <label htmlFor={`${item}-checkbox`} className={`inline-block  h-8 w-8 rounded-full bg-${item.toLowerCase()}-500`}></label>
                         </div>
                     </li>
                   ))}
