@@ -1,5 +1,6 @@
 import react, { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 const EditProfile = () => {
   const [err, setError] = useState('')
   const [firstname, setFirstName] = useState('')
@@ -71,7 +72,7 @@ const EditProfile = () => {
                   }
                 >
                   {profilepic && (
-                    <img
+                    <Image
                       src={profilepic}
                       className='object-cover w-full'
                       alt=''

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Modal from '../../components/Modal'
 import Sidebar from '../../components/Sidebar'
 import { client, urlFor } from '../../lib/client'
@@ -67,7 +68,7 @@ const Products = ({ products }) => {
                                     <input type="checkbox"
                                         className='w-5 h-5 focus:ring-emerald-500 rounded text-emerald-500 cursor-pointer'
                                     />
-                                    <img src={urlFor(item.image && item.image[0])}
+                                    <Image src={urlFor(item.image && item.image[0])}
                                         className="w-48 aspect-[3/2] rounded-lg object-contain border border-gray-200" alt=""
                                     />
                                     <div>

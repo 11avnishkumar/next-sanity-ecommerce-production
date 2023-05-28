@@ -27,7 +27,8 @@ const customers = ({ customers }) => {
                         </div>
                     </div>
                     {customers.map((customer) => (
-                        <div className='flex justify-between items-center gap-4'>
+                        <div className='flex justify-between items-center
+                         gap-4' key={customer.id}>
                             <div className='mb-2'>
                                 <div className='flex justify-center items-center gap-4'>{customer.name}</div>
                             </div>

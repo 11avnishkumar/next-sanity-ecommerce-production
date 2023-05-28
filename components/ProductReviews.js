@@ -9,34 +9,17 @@ const ProductReviews = () => {
     const [showProuductReviewForm,setShowProductReviewForm] = useState(false);
     const reviews = [
      {
+      id:1,
       productName:"Nice Product",
       productMsg:"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
      },
      {
+      id:2,
       productName:"Nice Product",
       productMsg:"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
      },
     {
-      productName:"Nice Product",
-      productMsg:"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
-     },
-    {
-      productName:"Nice Product",
-      productMsg:"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
-     },
-    {
-      productName:"Nice Product",
-      productMsg:"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
-     },
-    {
-      productName:"Nice Product",
-      productMsg:"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
-     },
-    {
-      productName:"Nice Product",
-      productMsg:"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
-     },
-    {
+      id:3,
       productName:"Nice Product",
       productMsg:"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
      },
@@ -52,7 +35,7 @@ const ProductReviews = () => {
                 <button onClick={toggleProductReviews} className='text-xl bg-gray-400 text-white py-2 px-4 rounded-md  focus:outline-none focus:ring focus:ring-offset-2'>Write Product Review</button>
                 {showProuductReviewForm && <ProductReviewForm/>}
                 {reviews.map(item => (
-                <div className='flex justify-start items-center'>
+                <div className='flex justify-start items-center' key={item.id}>
                  <div className='overflow-hidden h-24 w-24'>
                    <img src='hello.jpg'/>
                  </div>

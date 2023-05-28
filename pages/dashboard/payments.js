@@ -28,7 +28,7 @@ const payments = ({ payments }) => {
                         </div>
                     </div>
                     {payments.map((payment) => (
-                        <div className='flex justify-between items-center gap-4'>
+                        <div className='flex justify-between items-center gap-4' key={payment.id}>
                             <div className='mb-2'>
                                 <div className='flex justify-center items-center gap-4'>{payment.payment_method_types}</div>
                             </div>
