@@ -19,12 +19,6 @@ const Home = ({ products, bannerData }) => {
 
   useEffect(() => {
     if (color.length > 0 || categories.length > 0 || brand.length > 0) {
-      // const queryParams = {
-      //   color,
-      //   categories,
-      //   brand,
-      // }
-
       // Convert the queryParams object into a query string
       let queryString = ''
 
@@ -32,8 +26,6 @@ const Home = ({ products, bannerData }) => {
         queryString += `color=${encodeURIComponent(color)}&`
       }
         
-      
-
       if (categories.length > 0) {
         queryString += `categories=${encodeURIComponent(categories)}&`
       }

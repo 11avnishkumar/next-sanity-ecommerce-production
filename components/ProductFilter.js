@@ -8,23 +8,23 @@ const ProductFilter = (props) => {
         categoriesFilter: ['Earphone', 'Mobile', 'Smartphone', 'Pendrive', 'Monitor'],
         brandFilter: ['Dell','Redmi', 'Boat', 'Apple', 'Samsung', 'Sony'],
         colorFilter : [
-            'red',
-            'pink',
-            'rose',
-            'orange',
-            'amber',
-            'yellow',
-            'lime',
-            'green',
-            'emerald',
-            'teal',
-            'cyan',
-            'indigo',
-            'purple',
-            'fuchsia',
-            'blue',
-            'violet',
-          ],
+            'bg-red-500',
+            'bg-pink-500',
+            'bg-rose-500',
+            'bg-orange-500',
+            'bg-amber-500',
+            'bg-yellow-500',
+            'bg-lime-500',
+            'bg-green-500',
+            'bg-emerald-500',
+            'bg-teal-500',
+            'bg-cyan-500',
+            'bg-indigo-500',
+            'bg-purple-500',
+            'bg-fuchsia-500',
+            'bg-blue-500',
+            'bg-violet-500'
+          ]
     }
     const getColors = (values) => {
          setColor((prevColor) => {
@@ -71,7 +71,7 @@ const ProductFilter = (props) => {
                     <li className="flex rounded-t-lg dark:border-gray-600" key={index}>
                         <div className="flex items-center pr-3 py-1">
                             <input id={`${item}-checkbox`} type="checkbox" value={`${item}`} className="hidden"  onChange={(e)=>getColors(e.target.value)}/>
-                            <label htmlFor={`${item}-checkbox`} className={`inline-block  h-8 w-8 rounded-full bg-${item.toLowerCase()}-500`}></label>
+                            <label htmlFor={`${item}-checkbox`} className={`inline-block  h-8 w-8 rounded-full ${item}`}></label>
                         </div>
                     </li>
                   ))}
