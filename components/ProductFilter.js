@@ -50,7 +50,7 @@ const ProductFilter = (props) => {
     
  
     return (
-        <div className='min-h-screen'>
+        <div className='min-h-screen hidden md:block'>
             <nav className='py-6 px-10 border-r border-gray-200'>
                 {/* Brand */}
                 <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Choose Brand</h3>
