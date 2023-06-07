@@ -11,8 +11,8 @@ const ProductReviewForm = () => {
     e.preventDefault()
   }
   return (
-    <div className='container mx-auto font-pop py-6'>
-      <div className='space-y-4 py-4 px-4 w-full md:grow'>
+    <div className='container mx-auto font-pop py-2'>
+      <div className='space-y-4 py-2 px-1 w-full md:grow'>
         <form onSubmit={handleProductReviews}>
           <div className='form-group mb-3'>
             <textarea
