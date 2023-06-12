@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   const copyright = new Date().getFullYear()
   return (
-    <div className='px-10 py-4 border-t border-gray-300'>
+    <div className='px-6 py-4 border-t border-gray-300'>
       <div className='flex  flex-col md:flex-row md:justify-between md:items-center'>
         <div className='mb-4 md:mb-0'>
           <h1 className='text-xl md:text-3xl font-bold'>

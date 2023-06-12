@@ -1,5 +1,4 @@
 import { client } from '../lib/client'
-import styles from '../styles/Home.module.css'
 import { Banner, Product } from '../components'
 import { ProductFilter } from '../components'
 import { useRouter } from 'next/router'

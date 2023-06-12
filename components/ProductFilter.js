@@ -48,24 +48,23 @@ const ProductFilter = (props) => {
     // call the functions and pass the values
     props.filterDataHandler(color,categories,brand);
     
- 
     return (
         <div className='min-h-screen hidden md:block'>
             <nav className='py-6 px-10 border-r border-gray-200'>
                 {/* Brand */}
-                <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Choose Brand</h3>
-                <ul className="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <h3 className="mb-4 font-semibold text-black">Choose Brand</h3>
+                <ul className="text-sm font-medium text-black bg-white border border-gray-200 rounded-lg  dark:text-white">
                  {filterCategories.brandFilter.map((item,index) => (
-                    <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600" key={index}>
+                    <li className="w-full border-b border-gray-200 rounded-t-lg" key={index}>
                         <div className="flex items-center pl-3">
-                            <input id={`${item}-checkbox`} type="checkbox" value={`${item}`} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" onChange={(e)=> getBrand(e.target.value)} />
-                            <label htmlFor={`${item}-checkbox`} className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{item}</label>
+                            <input id={`${item}-checkbox`} type="checkbox" value={`${item}`} className="w-4 h-4 border-gray-300 rounded focus:ring-blue-500  focus:ring-2" onChange={(e)=> getBrand(e.target.value)} />
+                            <label htmlFor={`${item}-checkbox`} className="w-full py-3 ml-2 text-sm font-medium text-black">{item}</label>
                         </div>
                     </li>
                   ))}
                 </ul>
                 {/* color */}
-                <h3 className="mt-4 mb-4 font-semibold text-gray-900 dark:text-white">Choose Color</h3>
+                <h3 className="mt-4 mb-4 font-semibold text-black dark:text-white">Choose Color</h3>
                 <ul className="bg-white flex flex-wrap">
                  {filterCategories.colorFilter.map((item,index) => (
                     <li className="flex rounded-t-lg dark:border-gray-600" key={index}>
@@ -77,13 +76,13 @@ const ProductFilter = (props) => {
                   ))}
                 </ul>
               { /* categories */ }
-                <h3 className="mt-4 mb-4 font-semibold text-gray-900 dark:text-white">Choose Categories</h3>
-                <ul className="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <h3 className="mt-4 mb-4 font-semibold text-black bg-white dark:text-white">Choose Categories</h3>
+                <ul className="text-sm font-medium  bg-white border border-gray-200 rounded-lg  dark:text-white">
                  {filterCategories.categoriesFilter.map((item,index) => (
-                    <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600" key={index}>
+                    <li className="w-full border-b border-gray-200 rounded-t-lg" key={index}>
                         <div className="flex items-center pl-3">
-                            <input id={`${item}-checkbox`} type="checkbox" value={`${item}`} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" onChange={(e) => getCategories(e.target.value)} />
-                            <label htmlFor={`${item}-checkbox`} className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{item}</label>
+                            <input id={`${item}-checkbox`} type="checkbox" value={`${item}`} className="w-4 h-4 border-gray-300 rounded focus:ring-blue-500  focus:ring-2" onChange={(e) => getCategories(e.target.value)} />
+                            <label htmlFor={`${item}-checkbox`} className="w-full py-3 ml-2 text-sm font-medium text-black">{item}</label>
                         </div>
                     </li>
                   ))}
